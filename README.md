@@ -22,7 +22,6 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ```cs
 var config = new ConfigurationBuilder()
-    .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
     .AddTomlFile("appsettings.toml", optional: true, reloadOnChange: true)
     .Build();
 ```

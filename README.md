@@ -23,3 +23,12 @@ AllowedHosts = "*"
         Microsoft = "Warning"
         "Microsoft.Hosting.Lifetime" = "Information"
 ```
+or
+```toml
+AllowedHosts = "*"
+
+[Logging.LogLevel]
+Default = "Information"
+Microsoft = "Warning"
+"Microsoft.Hosting.Lifetime" = "Information"
+```

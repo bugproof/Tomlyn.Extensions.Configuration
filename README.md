@@ -10,3 +10,16 @@ config
   .AddTomlFile("appsettings.toml", optional: true, reloadOnChange: true)
   .AddTomlFile($"appsettings.{env.EnvironmentName}.toml", optional: true, reloadOnChange: true);
 ```
+
+## appsettings.toml
+
+```toml
+AllowedHosts = "*"
+
+[Logging]
+
+    [Logging.LogLevel]
+        Default = "Information"
+        Microsoft = "Warning"
+        "Microsoft.Hosting.Lifetime" = "Information"
+```

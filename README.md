@@ -32,3 +32,5 @@ Default = "Information"
 Microsoft = "Warning"
 "Microsoft.Hosting.Lifetime" = "Information"
 ```
+
+Then you can access it like `Configuration["Logging:LogLevel:Default"]`. Binding with `IOptions<TOptions>` should work too.

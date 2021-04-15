@@ -2,6 +2,10 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <Description>TomlConfigurationProvider using Tomlyn</Description>
+        <RepositoryUrl>https://github.com/bugproof/Tomlyn.Extensions.Configuration</RepositoryUrl>
+        <PackageTags>toml;configuration</PackageTags>
+        <PackageIconUrl>https://raw.githubusercontent.com/xoofx/Tomlyn/master/img/logo.png</PackageIconUrl>
     </PropertyGroup>
 
     <ItemGroup>

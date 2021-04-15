@@ -12,9 +12,8 @@ namespace Tomlyn.Extensions.Configuration
     {
         private TomlConfigurationFileParser() { }
 
-        private readonly IDictionary<string, string> _data = new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-        private readonly Stack<string> _context = new();
-        private string _currentPath;
+        private readonly IDictionary<string, string> _data = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private readonly Stack<string> _paths = new();
 
         public static IDictionary<string, string> Parse(Stream input)
             => new TomlConfigurationFileParser().ParseStream(input);
@@ -59,8 +58,6 @@ namespace Tomlyn.Extensions.Configuration
 
         private void VisitObject(TomlObject obj)
         {
-            var key = _currentPath;
-
             switch (obj)
             {
                 case TomlTable tomlTable:
@@ -73,6 +70,7 @@ namespace Tomlyn.Extensions.Configuration
                     VisitArray(tomlArray);
                     break;
                 case TomlValue tomlValue:
+                    string key = _paths.Peek();
                     _data[key] = Convert.ToString(tomlValue.ValueAsObject, CultureInfo.InvariantCulture);
                     break;
                 default:
@@ -80,16 +78,11 @@ namespace Tomlyn.Extensions.Configuration
             }
         }
 
-        private void EnterContext(string context)
-        {
-            _context.Push(context);
-            _currentPath = ConfigurationPath.Combine(_context.Reverse());
-        }
+        private void EnterContext(string context) =>
+            _paths.Push(_paths.Count > 0 ?
+                _paths.Peek() + ConfigurationPath.KeyDelimiter + context :
+                context);
 
-        private void ExitContext()
-        {
-            _context.Pop();
-            _currentPath = ConfigurationPath.Combine(_context.Reverse());
-        }
+        private void ExitContext() => _paths.Pop();
     }
 }

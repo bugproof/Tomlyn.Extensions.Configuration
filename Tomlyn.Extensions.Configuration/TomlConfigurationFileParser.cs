@@ -71,6 +71,10 @@ namespace Tomlyn.Extensions.Configuration
                     break;
                 case TomlValue tomlValue:
                     string key = _paths.Peek();
+                    if (_data.ContainsKey(key))
+                    {
+                        throw new FormatException($"Key {key} is duplicated");
+                    }
                     _data[key] = Convert.ToString(tomlValue.ValueAsObject, CultureInfo.InvariantCulture);
                     break;
                 default:

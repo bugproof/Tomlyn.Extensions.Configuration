@@ -6,7 +6,7 @@ namespace Tomlyn.Extensions.Configuration
     {
         public override IConfigurationProvider Build(IConfigurationBuilder builder)
         {
-            FileProvider ??= builder.GetFileProvider();
+            EnsureDefaults(builder);
             return new TomlConfigurationProvider(this);
         }
     }

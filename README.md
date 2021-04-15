@@ -3,9 +3,10 @@ TomlConfigurationProvider using [Tomlyn](https://github.com/xoofx/Tomlyn) becaus
 
 Mostly based on [Microsoft.Extensions.Configuration.Json](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration.Json/src)
 
-## Usage (ASP.NET Core)
+## Usage
 
 ```cs
+// ASP.NET Core
 public static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args) // CreateDefaultBuilder calls AddJsonFile but appsettings.json is optional
         .ConfigureAppConfiguration((hostingContext, config) =>
@@ -16,11 +17,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
                 .AddTomlFile($"appsettings.{env.EnvironmentName}.toml", optional: true, reloadOnChange: true);
         })
         .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
-```
-
-## Usage (Console app)
-
-```cs
+        
+// Console
 var config = new ConfigurationBuilder()
     .AddTomlFile("appsettings.toml", optional: true, reloadOnChange: true)
     .Build();

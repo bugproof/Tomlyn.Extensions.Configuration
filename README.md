@@ -7,7 +7,7 @@ Mostly based on [Microsoft.Extensions.Configuration.Json](https://github.com/dot
 
 ```cs
 public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args) // CreateDefaultBuilder calls AddJsonFile for but appsettings.json is optional
+    Host.CreateDefaultBuilder(args) // CreateDefaultBuilder calls AddJsonFile but appsettings.json is optional
         .ConfigureAppConfiguration((hostingContext, config) =>
         {
             var env = hostingContext.HostingEnvironment;

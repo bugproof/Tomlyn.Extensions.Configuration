@@ -13,7 +13,7 @@ config
   .AddTomlFile($"appsettings.{env.EnvironmentName}.toml", optional: true, reloadOnChange: true);
 ```
 
-## appsettings.toml
+### appsettings.toml
 
 ```toml
 AllowedHosts = "*"

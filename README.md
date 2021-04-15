@@ -33,4 +33,4 @@ Microsoft = "Warning"
 "Microsoft.Hosting.Lifetime" = "Information"
 ```
 
-Then you can access it like `Configuration["Logging:LogLevel:Default"]`. Binding with `IOptions<TOptions>` should work too.
+Then you can access it like `Configuration["Logging:LogLevel:Default"]`. Binding with [`IOptions<TOptions>`](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-5.0) should work too.

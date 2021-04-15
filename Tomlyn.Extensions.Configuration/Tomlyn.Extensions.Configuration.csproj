@@ -6,6 +6,8 @@
         <RepositoryUrl>https://github.com/bugproof/Tomlyn.Extensions.Configuration</RepositoryUrl>
         <PackageTags>toml;configuration</PackageTags>
         <PackageIconUrl>https://raw.githubusercontent.com/xoofx/Tomlyn/master/img/logo.png</PackageIconUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>

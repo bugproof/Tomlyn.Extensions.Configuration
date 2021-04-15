@@ -28,10 +28,10 @@ namespace Tomlyn.Extensions.Configuration
 
         private void VisitTable(TomlTable table)
         {
-            foreach (var (key, val) in table.GetTomlEnumerator())
+            foreach (var keyValuePair in table.GetTomlEnumerator())
             {
-                EnterContext(key);
-                VisitObject(val);
+                EnterContext(keyValuePair.Key);
+                VisitObject(keyValuePair.Value);
                 ExitContext();
             }
         }

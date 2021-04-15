@@ -23,10 +23,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 ```cs
 var config = new ConfigurationBuilder()
     .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
-    .AddJsonFile("appsettings.json", false)
+    .AddTomlFile("appsettings.toml", optional: true, reloadOnChange: true)
     .Build();
-            
-config.AddTomlFile("appsettings.toml", optional: true, reloadOnChange: true)
 ```
 
 ## appsettings.toml

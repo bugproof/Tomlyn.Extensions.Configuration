@@ -1,5 +1,5 @@
 # Tomlyn.Extensions.Configuration
-TomlConfigurationProvider using Tomlyn
+TomlConfigurationProvider using [Tomlyn](https://github.com/xoofx/Tomlyn) because all the other TOML libs are dead
 
 ## Usage
 

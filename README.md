@@ -1,5 +1,5 @@
 # Tomlyn.Extensions.Configuration [![NuGet](https://img.shields.io/nuget/v/Tomlyn.Extensions.Configuration)](https://www.nuget.org/packages/Tomlyn.Extensions.Configuration/)
-TomlConfigurationProvider using [Tomlyn](https://github.com/xoofx/Tomlyn) because all the other TOML libs are dead. 
+TomlConfigurationProvider using [Tomlyn](https://github.com/xoofx/Tomlyn) because [all the other TOML libs are dead](https://github.com/toml-lang/toml/wiki#implementations). 
 
 Mostly based on [Microsoft.Extensions.Configuration.Json](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration.Json/src)
 

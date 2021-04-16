@@ -49,3 +49,12 @@ Microsoft = "Warning"
 Then you can access it like `Configuration["Logging:LogLevel:Default"]`. 
 
 Binding with [`IOptions<TOptions>`](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-5.0) should work too.
+
+## Case sensitivity
+
+TOML is case-sensitive but [configuration keys aren't](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-5.0#configuration-keys-and-values). So even though this is accepted when using Tomlyn alone, it's not accepted when using this library and exception will be thrown:
+
+```toml
+name = "Gina"
+Name = "Gina"
+```

@@ -8,13 +8,22 @@ Mostly based on [Microsoft.Extensions.Configuration.Json](https://github.com/dot
 ```cs
 // ASP.NET Core
 public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args) // CreateDefaultBuilder calls AddJsonFile but appsettings.json is optional
+    Host.CreateDefaultBuilder(args)
         .ConfigureAppConfiguration((hostingContext, config) =>
         {
+            config.Sources.Clear(); // CreateDefaultBuilder adds default configuration sources like appsettings.json. Here we can remove them
+
             var env = hostingContext.HostingEnvironment;
 
             config.AddTomlFile("appsettings.toml", optional: true, reloadOnChange: true)
                 .AddTomlFile($"appsettings.{env.EnvironmentName}.toml", optional: true, reloadOnChange: true);
+                
+            config.AddEnvironmentVariables();
+
+            if (args != null)
+            {
+                config.AddCommandLine(args);
+            }
         })
         .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
         

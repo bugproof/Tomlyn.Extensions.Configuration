@@ -14,13 +14,24 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
             config.Sources.Clear(); // CreateDefaultBuilder adds default configuration sources like appsettings.json. Here we can remove them
 
             var env = hostingContext.HostingEnvironment;
+            
+            bool reloadOnChange = hostingContext.Configuration.GetValue("hostBuilder:reloadConfigOnChange", defaultValue: true);
 
-            config.AddTomlFile("appsettings.toml", optional: true, reloadOnChange: true)
-                .AddTomlFile($"appsettings.{env.EnvironmentName}.toml", optional: true, reloadOnChange: true);
+            config.AddTomlFile("appsettings.toml", optional: true, reloadOnChange: reloadOnChange)
+                .AddTomlFile($"appsettings.{env.EnvironmentName}.toml", optional: true, reloadOnChange: reloadOnChange);
                 
+            if (env.IsDevelopment() && env.ApplicationName is { Length: > 0 })
+            {
+                var appAssembly = Assembly.Load(new AssemblyName(env.ApplicationName));
+                if (appAssembly is not null)
+                {
+                    config.AddUserSecrets(appAssembly, optional: true, reloadOnChange: reloadOnChange);
+                }
+            }
+            
             config.AddEnvironmentVariables();
 
-            if (args != null)
+            if (args is { Length: > 0 })
             {
                 config.AddCommandLine(args);
             }

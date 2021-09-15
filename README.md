@@ -81,7 +81,7 @@ Name = "Gina"
 
 ## Alternatives and benchmarks
 
-Another possibly better alternative is [Tommy.Extensions.Configuration](https://github.com/dezhidki/Tommy/tree/master/Tommy.Extensions.Configuration)
+Another possibly slightly faster alternative is [Tommy.Extensions.Configuration](https://github.com/dezhidki/Tommy/tree/master/Tommy.Extensions.Configuration)
 
 Tomen isn't available as a NuGet package
 

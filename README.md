@@ -1,5 +1,5 @@
 # Tomlyn.Extensions.Configuration [![NuGet](https://img.shields.io/nuget/v/Tomlyn.Extensions.Configuration)](https://www.nuget.org/packages/Tomlyn.Extensions.Configuration/)
-TomlConfigurationProvider using [Tomlyn](https://github.com/xoofx/Tomlyn) because [all the other TOML libs are dead](https://github.com/toml-lang/toml/wiki#implementations). 
+TomlConfigurationProvider using [Tomlyn](https://github.com/xoofx/Tomlyn)
 
 Mostly based on [Microsoft.Extensions.Configuration.Json](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration.Json/src)
 
@@ -77,4 +77,18 @@ TOML is case-sensitive but [configuration keys aren't](https://docs.microsoft.co
 ```toml
 name = "Gina"
 Name = "Gina"
+```
+
+## Alternatives and benchmarks
+
+Another possibly better alternative is [Tommy.Extensions.Configuration](https://github.com/dezhidki/Tommy/tree/master/Tommy.Extensions.Configuration)
+
+```
+|      Method |      Mean |    Error |   StdDev |   Gen 0 |  Gen 1 | Gen 2 | Allocated |
+|------------ |----------:|---------:|---------:|--------:|-------:|------:|----------:|
+|  TommyParse |  18.59 us | 0.083 us | 0.078 us |  1.8921 | 0.0610 |     - |  15.59 KB |
+|  TomenParse |  18.98 us | 0.175 us | 0.146 us |  3.1128 | 0.0916 |     - |  25.59 KB | -- not on NuGet
+| TomlynParse |  72.27 us | 0.706 us | 0.661 us |  5.8594 | 0.7324 |     - |  48.69 KB |
+|   NettParse | 112.26 us | 0.978 us | 0.867 us | 16.8457 | 1.3428 |     - | 137.97 KB |
+| TomletParse | 146.98 us | 0.478 us | 0.399 us |  2.4414 |      - |     - |  20.24 KB |
 ```

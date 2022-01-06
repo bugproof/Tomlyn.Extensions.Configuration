@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
 
@@ -44,5 +45,15 @@ namespace Tomlyn.Extensions.Configuration
 
         public static IConfigurationBuilder AddTomlFile(this IConfigurationBuilder builder, Action<TomlConfigurationSource> configureSource)
             => builder.Add(configureSource);
+        
+        public static IConfigurationBuilder AddTomlStream(this IConfigurationBuilder builder, Stream stream)
+        {
+            if (builder == null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
+
+            return builder.Add<TomlStreamConfigurationSource>(s => s.Stream = stream);
+        }
     }
 }

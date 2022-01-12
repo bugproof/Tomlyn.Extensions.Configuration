@@ -79,6 +79,6 @@ name = "Gina"
 Name = "Gina"
 ```
 
-## Benchmarks
+## Alternatives and benchmarks
 
-https://github.com/bugproof/TomlLibrariesBenchmark
+Another [possibly slightly faster](https://github.com/bugproof/TomlLibrariesBenchmark) alternative is [Tommy.Extensions.Configuration](https://github.com/dezhidki/Tommy/tree/master/Tommy.Extensions.Configuration).

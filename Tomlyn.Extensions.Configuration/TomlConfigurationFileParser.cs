@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Tomlyn.Model;
 
@@ -28,7 +27,7 @@ namespace Tomlyn.Extensions.Configuration
 
         private void VisitTable(TomlTable table)
         {
-            foreach (var keyValuePair in table.GetTomlEnumerator())
+            foreach (var keyValuePair in table)
             {
                 EnterContext(keyValuePair.Key);
                 VisitObject(keyValuePair.Value);
@@ -48,7 +47,7 @@ namespace Tomlyn.Extensions.Configuration
         private void VisitArray(TomlArray array)
         {
             var i = 0;
-            foreach (var tomlObj in array.GetTomlEnumerator())
+            foreach (var tomlObj in array)
             {
                 EnterContext((i++).ToString());
                 VisitObject(tomlObj);
@@ -56,7 +55,7 @@ namespace Tomlyn.Extensions.Configuration
             }
         }
 
-        private void VisitObject(TomlObject obj)
+        private void VisitObject(object obj)
         {
             switch (obj)
             {
@@ -69,16 +68,13 @@ namespace Tomlyn.Extensions.Configuration
                 case TomlArray tomlArray:
                     VisitArray(tomlArray);
                     break;
-                case TomlValue tomlValue:
-                    var key = _paths.Peek();
-                    if (_data.ContainsKey(key))
-                    {
-                        throw new FormatException($"Key {key} is duplicated");
-                    }
-                    _data[key] = Convert.ToString(tomlValue.ValueAsObject, CultureInfo.InvariantCulture);
+                // The TomlDateTime case can be deleted once https://github.com/xoofx/Tomlyn/pull/21 is merged and released
+                case TomlDateTime tomlDateTime:
+                    _data.Add(_paths.Peek(), tomlDateTime.ToString());
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(obj));
+                    _data.Add(_paths.Peek(), Convert.ToString(obj, CultureInfo.InvariantCulture));
+                    break;
             }
         }
 

@@ -68,10 +68,6 @@ namespace Tomlyn.Extensions.Configuration
                 case TomlArray tomlArray:
                     VisitArray(tomlArray);
                     break;
-                // The TomlDateTime case can be deleted once https://github.com/xoofx/Tomlyn/pull/21 is merged and released
-                case TomlDateTime tomlDateTime:
-                    _data.Add(_paths.Peek(), tomlDateTime.ToString());
-                    break;
                 default:
                     _data.Add(_paths.Peek(), Convert.ToString(obj, CultureInfo.InvariantCulture));
                     break;

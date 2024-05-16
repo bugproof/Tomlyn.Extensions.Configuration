@@ -18,7 +18,7 @@ public class TomlToSnakeCaseModifierTest
         
         // ONLY NECESSARY if your variable binding DOES NOT have underscores and is PascalCase.
         // E.g., pascal_case in your .toml file is mapped to PascalCase in your binding class NOT Pascal_Case.
-        var config = TomlToSnakeCaseModifier.RemoveUnderscores(configuration);
+        var config = configuration.RemoveUnderscores();
         config.Bind(sample);
 
         // The configuration system is type-agnostic and will not attempt to convert to numeric types

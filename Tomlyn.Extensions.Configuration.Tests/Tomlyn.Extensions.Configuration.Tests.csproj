@@ -20,6 +20,9 @@
 
   <ItemGroup>
     <None Update="sample.toml" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="sample_with_underscores.toml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

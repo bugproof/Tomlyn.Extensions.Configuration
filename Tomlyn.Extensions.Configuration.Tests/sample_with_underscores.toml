@@ -12,7 +12,7 @@ date_of_birth = 1979-05-27
 is_enabled = true
 ports = [ 8000, 8001, 8002 ]
 data_values = [ ["delta", "phi"], [3.14] ]
-temp_targets = { cpu = 79.5, case = 72.0 }
+TempTargets = { cpu = 79.5, case = 72.0 }
 
 [servers]
 

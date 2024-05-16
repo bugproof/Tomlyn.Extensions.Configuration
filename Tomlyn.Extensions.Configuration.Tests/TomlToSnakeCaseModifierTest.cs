@@ -16,8 +16,8 @@ public class TomlToSnakeCaseModifierTest
             .AddTomlFile("sample_with_underscores.toml")
             .Build();
         
-        // ONLY NECESSARY if your variable binding DOES NOT have underscores and is PascalCase.
-        // E.g., pascal_case in your .toml file is mapped to PascalCase in your binding class NOT Pascal_Case.
+        // This is necessary to modify keys in your .toml file that have underscores. NOTE that if
+        // .toml file has underscores, you must ensure your C# bind file has 'PascalCase' names. 
         var config = configuration.RemoveUnderscores();
         config.Bind(sample);
 

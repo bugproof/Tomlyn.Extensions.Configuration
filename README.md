@@ -79,6 +79,33 @@ name = "Gina"
 Name = "Gina"
 ```
 
+## Snake Case Keys
+
+TOML file keys [usually follow the 'snake_case' naming convention](https://toml.io/en/v1.0.0#keys) along with 'PascalCase' variables that bind to the keys.
+
+```toml
+name_of_person = "Gina"
+```
+```cs
+string NameOfPerson = "Gina"
+```
+
+If your .toml file has any 'snake_case' keys, you can use the [`RemoveUnderscores`] method to modify the keys with underscores after the build and before the bind call.
+
+```cs
+var configuration = new ConfigurationBuilder()
+    .AddTomlFile("sample_with_underscores.toml")
+    .Build();
+
+// Modifying keys in the below line
+var config = configuration.RemoveUnderscores();
+
+// Bind the new ConfigurationBuilder called 'config' with the class to be bound
+config.Bind(sample);
+```
+
+If using 'snake_case' keys, YOU MUST make sure that your C# variables are 'PascalCase' to ensure proper binding. 
+
 ## Alternatives and benchmarks
 
 Another [possibly slightly faster](https://github.com/bugproof/TomlLibrariesBenchmark) alternative is [Tommy.Extensions.Configuration](https://github.com/dezhidki/Tommy/tree/master/Tommy.Extensions.Configuration).

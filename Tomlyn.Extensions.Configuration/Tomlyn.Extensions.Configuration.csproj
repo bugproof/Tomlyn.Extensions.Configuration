@@ -5,7 +5,7 @@
         <Description>TomlConfigurationProvider using Tomlyn</Description>
         <RepositoryUrl>https://github.com/bugproof/Tomlyn.Extensions.Configuration</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageVersion>1.0.5</PackageVersion>
+        <PackageVersion>1.0.6</PackageVersion>
         <PackageTags>toml;configuration</PackageTags>
         <PackageIconUrl>https://raw.githubusercontent.com/xoofx/Tomlyn/master/img/logo.png</PackageIconUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>

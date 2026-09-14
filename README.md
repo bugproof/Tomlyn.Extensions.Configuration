@@ -106,6 +106,28 @@ config.Bind(sample);
 
 If using 'snake_case' keys, YOU MUST make sure that your C# variables are 'PascalCase' to ensure proper binding. 
 
+## NativeAOT
+
+This library is annotated as NativeAOT compatible (`IsAotCompatible`) and has no runtime reflection dependencies. TOML parsing goes through a source-generated Tomlyn `TomlSerializerContext`, so it works when reflection-based serialization is disabled (`PublishAot=true`).
+
+When publishing with `PublishAot=true`, avoid reflection-based configuration binding:
+
+```cs
+// Not AOT safe
+configuration.Bind(options);
+
+// AOT safe
+var value = configuration["Server:Port"];
+```
+
+To bind values to strongly typed options under NativeAOT, opt into the configuration binder source generator:
+
+```xml
+<PropertyGroup>
+  <EnableConfigurationBindingGenerator>true</EnableConfigurationBindingGenerator>
+</PropertyGroup>
+```
+
 ## Alternatives and benchmarks
 
 Another [possibly slightly faster](https://github.com/bugproof/TomlLibrariesBenchmark) alternative is [Tommy.Extensions.Configuration](https://github.com/dezhidki/Tommy/tree/master/Tommy.Extensions.Configuration).
